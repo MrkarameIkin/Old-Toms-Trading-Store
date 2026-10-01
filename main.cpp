@@ -14,21 +14,21 @@ struct itemParameters {
 void buy(std::map <std::string, itemParameters> &item, std::string name, std::ofstream &file) {
     std::string input;
 
-    time_t timeLogs = time(nullptr);
-    struct tm *local = localtime(&timeLogs);
-
     std::cout << "\nВведите название того, что хотите купить\n\n> ";
     std::getline(std::cin, name);
 
     auto it = item.find(name);
 
     if(it == item.end()) std::cout << "\nУ нас такого нету!\n\n";
-    else {
+    else {  
         std::cout << "\nВведите количество товара\n\n> ";
         std::getline(std::cin, input);
 
         if(std::stoi(input) > it->second.count) std::cout << "\nУ нас столько нету!\n\n";
         else {
+            time_t timeLogs = time(nullptr);
+            struct tm *local = localtime(&timeLogs);
+            
             std::cout << "\nБыл приобретен товар '" << name << "' в количестве " << input << " шт.\n\n";
 
             it->second.count -= stoi(input);
@@ -66,9 +66,6 @@ void priceList(std::map <std::string, itemParameters> &item, std::ofstream &file
 void sell(std::map <std::string, itemParameters> &item, std::ofstream &file) {
     std::string name, cost, count;
 
-    time_t timeLogs = time(nullptr);
-    struct tm *local = localtime(&timeLogs);
-
     while(true) {
         std::cout << "\nВведите название товара (или 0, чтобы выйти)\n\n> ";
 
@@ -86,6 +83,9 @@ void sell(std::map <std::string, itemParameters> &item, std::ofstream &file) {
                     continue;
                 }
 
+                time_t timeLogs = time(nullptr);
+                struct tm *local = localtime(&timeLogs);
+
                 std::cout << "\nВведите количество товара\n\n> ";
 
                 std::getline(std::cin, count);
@@ -99,6 +99,9 @@ void sell(std::map <std::string, itemParameters> &item, std::ofstream &file) {
                 else std::cout << "\nОшибка ввода!\n";
             }
             else {
+                time_t timeLogs = time(nullptr);
+                struct tm *local = localtime(&timeLogs);
+
                 std::cout << "\nВведите количество товара\n\n> ";
 
                 std::getline(std::cin, count);
