@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project("Simple Calc" VERSION 0.0.0)
+project("Old Tom's Trading Store" VERSION 0.0.2)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
