@@ -11,3 +11,4 @@ add_executable(Old_Toms_Trading_Store
 )
 
 target_include_directories(Old_Toms_Trading_Store PRIVATE inc)
+target_compile_definitions(Old_Toms_Trading_Store PRIVATE PROJECT_ROOT="${CMAKE_SOURCE_DIR}")

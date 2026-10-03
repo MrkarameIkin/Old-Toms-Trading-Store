@@ -3,22 +3,30 @@
 #include <fstream>
 #include <ctime>
 #include <iomanip>
+#include <filesystem>
 #include "buy.h"
 #include "sell.h"
 
 #define LOG_SAVING 1 // 1 - дописывать логи, 0 - перезаписывать логи
 
+// совершенно ненужный костыль, без которого IntelliSense моего VS Code начинает ругаться, но программа все равно работает
+#ifndef PROJECT_ROOT
+#define PROJECT_ROOT "."
+#endif
+
 int main() {
     std::map <std::string, itemParameters> item; // Название, количество и стоимость предмета
     std::string input;
 
+    // создает в папке пректа директорию logs
+    std::filesystem::create_directories(std::string(PROJECT_ROOT) + "/logs");
+
     #if LOG_SAVING == 1
-        std::ofstream file("logs/shop_log.txt", std::ios::app);
+        std::ofstream file(std::string(PROJECT_ROOT) + "/logs/shop_log.txt", std::ios::app);
     #endif
 
     #if LOG_SAVING == 0
-        std::ofstream file("logs/shop_log.txt");
-        file << "// purchase and sale logs in the Old Tom's Trading Store\n\n";
+        std::ofstream file(std::string(PROJECT_ROOT) + "/logs/shop_log.txt");
     #endif
 
     item.insert({"Меч", {5,100}});
