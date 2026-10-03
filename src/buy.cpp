@@ -1,3 +1,5 @@
+#include <ctime>
+#include <iomanip>
 #include "buy.h"
 
 void priceList(std::map <std::string, itemParameters> &item, std::ofstream &file) {
@@ -16,7 +18,7 @@ void priceList(std::map <std::string, itemParameters> &item, std::ofstream &file
     while(true) {
         std::getline(std::cin, input);
 
-        if(input == "Да" || input == "да") buy(item,name,file);
+        if(input == "Да" || input == "да") buy(item,file);
         else if(input == "Нет" || input == "нет") break;
         else std::cout << "\nПовторите ввод!\n";
 
@@ -24,8 +26,8 @@ void priceList(std::map <std::string, itemParameters> &item, std::ofstream &file
     }
 }
 
-void buy(std::map <std::string, itemParameters> &item, std::string name, std::ofstream &file) {
-    std::string input;
+void buy(std::map <std::string, itemParameters> &item, std::ofstream &file) {
+    std::string input, name;
 
     std::cout << "\nВведите название того, что хотите купить\n\n> ";
     std::getline(std::cin, name);
